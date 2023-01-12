@@ -382,8 +382,9 @@ return [
                 ],
                 [
                     'text' => 'brands',
-                    'url'  => 'admin/',
+                    'url'  => 'admin/brand',
                     'icon' => 'fas fa-fw fa-tag',
+                    'active' => ['admin/brand', 'admin/brand*']
                 ],
                 [
                     'text' => 'categories',

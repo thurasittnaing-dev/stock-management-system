@@ -28,4 +28,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     // location
     Route::resource('location', 'Admin\LocationController');
+
+    // brands
+    Route::resource('brand', 'Admin\BrandController');
 });

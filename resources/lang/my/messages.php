@@ -21,4 +21,7 @@ return [
 
   'user_profile' => 'Profile',
   'user_change_password' => 'Change Password',
+
+  // buttons
+  'create_new' => 'အသစ်ထည့်ရန်',
 ];

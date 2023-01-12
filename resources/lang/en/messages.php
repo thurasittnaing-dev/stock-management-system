@@ -21,4 +21,8 @@ return [
 
   'user_profile' => 'Profile',
   'user_change_password' => 'Change Password',
+
+
+  // buttons
+  'create_new' => 'Create New',
 ];
