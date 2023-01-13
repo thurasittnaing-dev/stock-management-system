@@ -29,7 +29,7 @@
                     <input type="hidden" name="page" value="{{ $page }}">
 
                     <div class="form-group col-md-6">
-                        <label for="name">Brand Name</label>
+                        <label for="name">{{ __('messages.brand_name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                             id="name" placeholder="Please enter..." value="{{ old('name', $brand->name) }}">
                         @error('name')
@@ -37,7 +37,7 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="status">Status</label>
+                        <label for="status">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
                             <option {{ $brand->status == '1' ? 'selected' : '' }} value="1">Active</option>
                             <option {{ $brand->status == '0' ? 'selected' : '' }} value="0">Inactive</option>
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-block btn-success">Update</button>
+                        <button type="submit" class="btn btn-block btn-success"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.update') }}</button>
                     </div>
                 </form>
 

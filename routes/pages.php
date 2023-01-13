@@ -9,4 +9,4 @@ Route::get('/', function () {
 Route::get('/home', 'PageController@home')->name('home');
 
 // dashboard
-Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
+Route::get('admin/dashboard', 'PageController@dashboard')->name('dashboard');

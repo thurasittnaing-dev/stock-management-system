@@ -20,12 +20,12 @@
             $status = $_GET['status'] ?? '';
             $page = $_GET['page'] ?? 1;
         @endphp
-        <div class="my-2 d-flex justify-content-between">
+        <div class="my-2 d-flex justify-content-between p-0">
 
             <div class="col-md-8 p-0">
                 <form action="" id="search-form">
                     <div class="d-flex">
-                        <div class="form-group mr-1 col-md-3">
+                        <div class="form-group mr-1 col-md-3 p-0">
                             <input type="text" class="form-control" name="keyword" placeholder="Search..."
                                 value="{{ old('keyword', $keyword) }}">
                         </div>
@@ -54,13 +54,13 @@
         </div>
 
         <table class="table table-bordered">
-            <thead class="table-bg-theme">
+            <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Created at</th>
-                    <th>Action</th>
+                    <th>{{ __('messages.table_name') }}</th>
+                    <th>{{ __('messages.table_status') }}</th>
+                    <th>{{ __('messages.table_created_at') }}</th>
+                    <th>{{ __('messages.table_action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,7 +83,7 @@
                             <div class="d-flex">
                                 <div class="mr-1">
                                     <a href="{{ url('admin/brand/' . $brand->id . '/edit?page=' . $page) }}"
-                                        class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                        class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
                                 </div>
                                 <form action="{{ route('brand.destroy', $brand->id) }}" method="POST"
                                     id="delete-form-{{ $brand->id }}">
@@ -91,7 +91,7 @@
                                     @method('DELETE')
 
                                     <button type="button" data-id="{{ $brand->id }}"
-                                        id="delete-btn-{{ $brand->id }}" class="btn btn-sm btn-danger"><i
+                                        id="delete-btn-{{ $brand->id }}" class="btn btn-sm btn-outline-danger"><i
                                             class="fas fa-trash"></i></button>
                                 </form>
                             </div>

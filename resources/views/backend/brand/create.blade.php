@@ -22,7 +22,7 @@
                     @csrf
                     <h4 class="text-muted font-weight-bold">Brand Create</h4>
                     <div class="form-group col-md-6">
-                        <label for="name">Brand Name</label>
+                        <label for="name">{{ __('messages.brand_name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                             id="name" placeholder="Please enter..." value="{{ old('name') }}">
                         @error('name')
@@ -30,7 +30,7 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="status">Status</label>
+                        <label for="status">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-block btn-success">Save</button>
+                        <button type="submit" class="btn btn-block btn-success"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.save') }}</button>
                     </div>
                 </form>
 

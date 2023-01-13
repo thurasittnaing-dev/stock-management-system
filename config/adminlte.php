@@ -323,8 +323,9 @@ return [
             'submenu' => [
                 [
                     'text' => 'main_dashboard',
-                    'url'  => 'admin/',
+                    'url'  => 'dashboard',
                     'icon' => 'fas fa-fw fa-gauge',
+                    'active' => ['admin/dashboard', 'admin/dashboard*']
                 ],
                 [
                     'text' => 'monthly_purchased',

@@ -25,4 +25,18 @@ return [
 
   // buttons
   'create_new' => 'Create New',
+  'save' => 'Save',
+  'update' => 'Update',
+
+  // table
+  'table_name' => 'Name',
+  'table_status' => 'Status',
+  'table_created_at' => 'Created at',
+  'table_action' => 'Action',
+
+
+  // Brand 
+  'brand_name' => 'Brand Name',
+  'status' => 'Status',
+
 ];
