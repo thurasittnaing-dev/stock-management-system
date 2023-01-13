@@ -6,6 +6,8 @@ use App\Brand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandStoreRequest;
+use App\Helper;
+use App\Http\Requests\BrandUpdateRequest;
 
 class BrandController extends Controller
 {
@@ -28,7 +30,7 @@ class BrandController extends Controller
         }
 
         $count = $brands->count();
-        $brands = $brands->paginate(10);
+        $brands = $brands->orderBy('created_at', 'desc')->paginate(10);
         return view('backend.brand.index', compact('count', 'brands'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -88,11 +90,13 @@ class BrandController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(BrandStoreRequest $request, brand $brand)
+    public function update(BrandUpdateRequest $request, brand $brand)
     {
         //
         Brand::update_data($brand, $request);
-        $url = $request->page == '1' ? 'admin/brand' : 'admin/brand?page=' . $request->page;
+
+        $url = Helper::getRedirectURL($request->page, 'admin/brand');
+
         return redirect($url)->with('success', 'Updated successful');
     }
 

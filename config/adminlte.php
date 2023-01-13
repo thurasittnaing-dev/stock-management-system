@@ -389,8 +389,9 @@ return [
                 ],
                 [
                     'text' => 'categories',
-                    'url'  => 'admin/',
+                    'url'  => 'admin/category',
                     'icon' => 'fas fa-fw fa-list-check',
+                    'active' => ['admin/category', 'admin/category*']
                 ],
                 [
                     'text' => 'stock_types',

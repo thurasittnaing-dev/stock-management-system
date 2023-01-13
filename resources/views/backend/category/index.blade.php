@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Brands')
+@section('title', 'Categories')
 
 @section('content_header')
     {{-- Breadcrum Start --}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Brands</li>
+            <li class="breadcrumb-item active" aria-current="page">Categories</li>
         </ol>
     </nav>
     {{-- Breadcrum End --}}
@@ -44,7 +44,7 @@
 
             <div class="d-flex">
                 <div>
-                    <a href="{{ route('brand.create') }}" class="btn btn-outline-primary btn-sm cus-btn">
+                    <a href="{{ route('category.create') }}" class="btn btn-outline-primary btn-sm cus-btn">
                         <i class="fas fa fa-plus"></i> {{ __('messages.create_new') }}
                     </a>
                 </div>
@@ -64,34 +64,34 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($brands as $brand)
+                @forelse ($categories as $category)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $brand->name }}</td>
+                        <td>{{ $category->name }}</td>
                         <td>
-                            @if ($brand->status)
+                            @if ($category->status)
                                 <span class="badge badge-success">active</span>
                             @else
                                 <span class="badge badge-danger">inactive</span>
                             @endif
                         </td>
                         <td>
-                            <span class="mr-1"> {{ date('d-m-Y', strtotime($brand->created_at)) }}</span>
-                            <small class="text-info">{{ $brand->created_at->diffForHumans() }}</small>
+                            <span class="mr-1"> {{ date('d-m-Y', strtotime($category->created_at)) }}</span>
+                            <small class="text-info">{{ $category->created_at->diffForHumans() }}</small>
                         </td>
                         <td>
                             <div class="d-flex">
                                 <div class="mr-1">
-                                    <a href="{{ url('admin/brand/' . $brand->id . '/edit?page=' . $page) }}"
+                                    <a href="{{ url('admin/category/' . $category->id . '/edit?page=' . $page) }}"
                                         class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
                                 </div>
-                                <form action="{{ route('brand.destroy', $brand->id) }}" method="POST"
-                                    id="delete-form-{{ $brand->id }}">
+                                <form action="{{ route('category.destroy', $category->id) }}" method="POST"
+                                    id="delete-form-{{ $category->id }}">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="button" data-id="{{ $brand->id }}"
-                                        id="delete-btn-{{ $brand->id }}" class="btn btn-sm btn-outline-danger"><i
+                                    <button type="button" data-id="{{ $category->id }}"
+                                        id="delete-btn-{{ $category->id }}" class="btn btn-sm btn-outline-danger"><i
                                             class="fas fa-trash"></i></button>
                                 </form>
                             </div>
@@ -104,7 +104,7 @@
                 @endforelse
             </tbody>
         </table>
-        {!! $brands->appends(request()->input())->links() !!}
+        {!! $categories->appends(request()->input())->links() !!}
     </div>
 @stop
 
@@ -138,11 +138,11 @@
 
 
             // delete btn
-            let brands = @json($brands).data;
+            let categories = @json($categories).data;
 
-            brands.forEach(brand => {
-                $(`#delete-btn-${brand.id}`).on('click', function(e) {
-                    let id = $(`#delete-btn-${brand.id}`).attr('data-id');
+            categories.forEach(category => {
+                $(`#delete-btn-${category.id}`).on('click', function(e) {
+                    let id = $(`#delete-btn-${category.id}`).attr('data-id');
                     // sweet alert
                     Swal.fire({
                         title: 'Are you sure?',

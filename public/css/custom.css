@@ -22,6 +22,10 @@
     color:#fff;
 } */
 
+.info-img {
+    width: 80%;
+}
+
 .nav-item > .nav-link > i {
     color: #3498db !important;
 }

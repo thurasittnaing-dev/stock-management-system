@@ -1,37 +1,30 @@
 @extends('adminlte::page')
 
-@section('title', 'Brands Edit')
+@section('title', 'Category Create')
 
 @section('content_header')
     {{-- Breadcrum Start --}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('brand.index') }}">Brand</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+            <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
         </ol>
     </nav>
     {{-- Breadcrum End --}}
 @stop
 
 @section('content')
-    @php
-        $page = $_GET['page'] ?? 1;
-    @endphp
     <div class="container-fluid">
-        <div class="card p-3">
+        <div class="card p-5">
             <div class="d-flex">
-                <form method="POST" action="{{ route('brand.update', $brand->id) }}" class="col-md-6" autocomplete="off">
+                <form method="POST" action="{{ route('category.store') }}" class="col-md-6" autocomplete="off">
                     @csrf
-                    @method('PUT')
-                    <h4 class="text-muted font-weight-bold mb-5">Brand Edit</h4>
-
-                    <input type="hidden" name="page" value="{{ $page }}">
-
+                    <h4 class="text-muted font-weight-bold mb-5">Category Create</h4>
                     <div class="form-group col-md-6">
-                        <label for="name">{{ __('messages.brand_name') }}</label>
+                        <label for="name">{{ __('messages.category_name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            id="name" placeholder="Please enter..." value="{{ old('name', $brand->name) }}">
+                            id="name" placeholder="Please enter..." value="{{ old('name') }}">
                         @error('name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -39,16 +32,16 @@
                     <div class="form-group col-md-6">
                         <label for="status">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                            <option {{ $brand->status == '1' ? 'selected' : '' }} value="1">Active</option>
-                            <option {{ $brand->status == '0' ? 'selected' : '' }} value="0">Inactive</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                         @error('status')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-block btn-success"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.update') }}</button>
+                    <div class="form-group col-md-6 d-flex">
+                        <button type="submit" class="btn btn-block btn-success"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.save') }}</button>
                     </div>
                 </form>
 

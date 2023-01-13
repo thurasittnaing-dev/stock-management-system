@@ -26,9 +26,12 @@ include 'pages.php';
 */
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
-    // location
+    // Location
     Route::resource('location', 'Admin\LocationController');
 
-    // brands
+    //Bbrands
     Route::resource('brand', 'Admin\BrandController');
+
+    // Category
+    Route::resource('category', 'Admin\CategoryController');
 });

@@ -16,7 +16,7 @@ return [
   'locations' => 'တည်နေရာများ',
   'suppliers' => 'ပေးသွင်းသူ',
   'brands' => 'အမှတ်တံဆိပ်',
-  'categories' => 'အမျိုးအစား',
+  'categories' => 'အမျိူးအစား',
   'stock_types' => 'ပစ္စည်း အမျိုးအစား',
 
   'user_profile' => 'ကိုယ်ရေးအချက်အလက်',
@@ -32,8 +32,13 @@ return [
   'table_status' => ' အခြေအနေ',
   'table_created_at' => 'ထည့်သွင်းလိုက်သော အချိန်',
   'table_action' => 'လုပ်ဆောင်ချက်',
+  'table_no_data' => 'ဒေတာ အချက်အလက်များ မရှိသေးပါ။',
+
 
   // Brand 
   'brand_name' => 'အမှတ်တံဆိပ် အမည်',
   'status' => ' အခြေအနေ',
+
+  // Category
+  'category_name' => 'အမျိုးအစား အမည်',
 ];

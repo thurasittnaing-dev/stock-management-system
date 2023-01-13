@@ -16,11 +16,11 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="card p-3">
+        <div class="card p-5">
             <div class="d-flex">
                 <form method="POST" action="{{ route('brand.store') }}" class="col-md-6" autocomplete="off">
                     @csrf
-                    <h4 class="text-muted font-weight-bold">Brand Create</h4>
+                    <h4 class="text-muted font-weight-bold mb-5">Brand Create</h4>
                     <div class="form-group col-md-6">
                         <label for="name">{{ __('messages.brand_name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
@@ -40,7 +40,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6 d-flex">
                         <button type="submit" class="btn btn-block btn-success"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.save') }}</button>
                     </div>
                 </form>
@@ -48,7 +48,7 @@
 
                 {{-- image --}}
                 <div class="col-md-6">
-                    <img src="{{ asset('./images/data_processing.png') }}" class="img-fluid" alt="data_processing">
+                    <img src="{{ asset('./images/data_processing2.png') }}" class="img-fluid info-img" alt="data_processing">
                 </div>
             </div>
         </div>

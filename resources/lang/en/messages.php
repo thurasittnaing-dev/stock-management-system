@@ -33,10 +33,14 @@ return [
   'table_status' => 'Status',
   'table_created_at' => 'Created at',
   'table_action' => 'Action',
+  'table_no_data' => 'There is no data',
 
 
   // Brand 
   'brand_name' => 'Brand Name',
   'status' => 'Status',
+
+  // Category
+  'category_name' => 'Category Name',
 
 ];
