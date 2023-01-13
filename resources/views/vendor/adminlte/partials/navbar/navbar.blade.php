@@ -1,7 +1,13 @@
 <nav
     class="main-header navbar
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
+
+    @if(session()->get('theme') == "dark")
     {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
+    @else
+    {{ config('navbar-dark navbar-dark', 'navbar-white navbar-light') }}">
+    @endif
+   
 
     {{-- Navbar left links --}}
     <ul class="navbar-nav">
@@ -40,3 +46,8 @@
     </ul>
 
 </nav>
+
+{{-- Theme Change Form --}}
+<form action="{{route('theme_change')}}" id="theme-change-form" method="GET">
+    <input type="hidden" name="theme" value="" id="theme-value">
+</form>
