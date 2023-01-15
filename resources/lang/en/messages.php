@@ -9,8 +9,11 @@ return [
   'monthly_purchased' => 'Monthly Purchased',
   'monthly_usage' => 'Monthly Usage',
   'purchased_histories' => 'Purchased Histories',
-  'usage_histories' => 'Usage Histories',
+  'usage_histories' => 'Withdraw Histories',
+  'return_histories' => 'Return Histories',
+  'damaged_histories' => 'Damaged Histories',
   'summary' => 'Summary',
+  'location_map' => 'Location Map',
 
   'setting' => 'Setting',
   'locations' => 'Locations',
@@ -42,5 +45,8 @@ return [
 
   // Category
   'category_name' => 'Category Name',
+
+  // Stock Type
+  'stock_type_name' => 'Stock Type Name',
 
 ];

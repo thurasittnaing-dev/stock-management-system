@@ -1,11 +1,9 @@
 <aside class="main-sidebar
 @if(session()->get('theme') == "dark")
-{{ config('sidebar-dark-primary elevation-4', 'sidebar-dark-primary elevation-4') }}
+    {{'sidebar-dark-primary elevation-4'}}
 @else
-{{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}
-
+    {{ 'sidebar-light-primary elevation-4' }}
 @endif
-
 ">
 
     {{-- Sidebar brand logo --}}

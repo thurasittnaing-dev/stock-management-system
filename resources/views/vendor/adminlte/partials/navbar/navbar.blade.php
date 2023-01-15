@@ -3,9 +3,9 @@
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
 
     @if(session()->get('theme') == "dark")
-    {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
+    {{ 'navbar-dark navbar-dark' }}">
     @else
-    {{ config('navbar-dark navbar-dark', 'navbar-white navbar-light') }}">
+    {{ 'navbar-light navbar-light' }} ">
     @endif
    
 

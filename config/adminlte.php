@@ -348,17 +348,32 @@ return [
         [
             'text'        => 'purchased_histories',
             'url'         => 'stock',
-            'icon'        => 'fas fa-fw fa-calendar',
+            'icon'        => 'fas fa-fw fa-clock-rotate-left',
         ],
         [
             'text'        => 'usage_histories',
             'url'         => 'stock',
-            'icon'        => 'fas fa-fw fa-calendar',
+            'icon'        => 'fas fa-fw fa-clock-rotate-left',
+        ],
+        [
+            'text'        => 'return_histories',
+            'url'         => 'stock',
+            'icon'        => 'fas fa-fw fa-clock-rotate-left',
+        ],
+        [
+            'text'        => 'damaged_histories',
+            'url'         => 'stock',
+            'icon'        => 'fas fa-fw fa-triangle-exclamation',
         ],
         [
             'text'        => 'summary',
             'url'         => 'stock',
             'icon'        => 'fas fa-fw fa-book',
+        ],
+        [
+            'text'        => 'location_map',
+            'url'         => 'location_map',
+            'icon'        => 'fas fa-fw fa-map',
         ],
         ['header' => 'MASTER DATA'],
         [
@@ -395,8 +410,9 @@ return [
                 ],
                 [
                     'text' => 'stock_types',
-                    'url'  => 'admin/',
-                    'icon' => 'fas fa-fw fa-list',
+                    'url'  => 'admin/stock_type',
+                    'icon' => 'fas fa-fw fa-box',
+                    'active' => ['admin/stock_type', 'admin/stock_type*']
                 ],
             ],
         ],
