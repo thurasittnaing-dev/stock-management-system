@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helper;
 use App\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LocationStoreRequest;
+use App\Http\Requests\LocationUpdateRequest;
 
 class LocationController extends Controller
 {
@@ -13,10 +16,21 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('backend.location.index');
+        $locations = new Location();
+
+        if ($request->keyword != '') {
+            $locations = $locations->where('name', 'LIKE', '%' . $request->keyword . '%');
+        }
+
+        if ($request->status != '') {
+            $locations = $locations->where('status', $request->status);
+        }
+
+        $count = $locations->count();
+        $locations = $locations->orderBy('created_at', 'desc')->paginate(10);
+        return view('backend.location.index', compact('count', 'locations'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
 
@@ -37,9 +51,11 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocationStoreRequest $request)
     {
-        //
+        Location::store_data($request);
+
+        return redirect()->route('location.index')->with('success', 'Created successful');
     }
 
     /**
@@ -48,7 +64,7 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(location $location)
     {
         //
     }
@@ -59,9 +75,10 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit($id)
     {
-        //
+        $location = Location::findorfail($id);
+        return view('backend.location.edit', compact('location'));
     }
 
     /**
@@ -71,9 +88,13 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(LocationUpdateRequest $request, Location $location)
     {
-        //
+        Location::update_data($location, $request);
+
+        $url = Helper::getRedirectURL($request->page, 'admin/location');
+
+        return redirect($url)->with('success', 'Updated successful');
     }
 
     /**
@@ -84,6 +105,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+        return redirect()->route('location.index')->with('success', 'Deleted successful');
     }
 }
