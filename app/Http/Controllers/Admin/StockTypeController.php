@@ -22,6 +22,15 @@ class StockTypeController extends Controller
         $stock_types = new StockType();
         $stock_types = $stock_types->where('status', 1);
         $count = $stock_types->count();
+
+        if ($request->keyword != '') {
+            $stock_types = $stock_types->where('name', 'LIKE', '%' . $request->keyword . '%');
+        }
+
+        if ($request->status != '') {
+            $stock_types = $stock_types->where('status', $request->status);
+        }
+
         $stock_types = $stock_types->orderBy('created_at', 'desc')->paginate(10);
         return view('backend.stock_type.index', compact('stock_types', 'count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
