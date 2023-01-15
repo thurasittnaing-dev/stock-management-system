@@ -395,8 +395,9 @@ return [
                 ],
                 [
                     'text' => 'stock_types',
-                    'url'  => 'admin/',
+                    'url'  => 'admin/stock_type',
                     'icon' => 'fas fa-fw fa-list',
+                    'active' => ['admin/stock_type', 'admin/stock_type*']
                 ],
             ],
         ],

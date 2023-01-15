@@ -36,9 +36,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     // Location
     Route::resource('location', 'Admin\LocationController');
 
-    //Bbrands
+    //Brands
     Route::resource('brand', 'Admin\BrandController');
 
     // Category
     Route::resource('category', 'Admin\CategoryController');
+
+    // Stock Type
+    Route::resource('stock_type', 'Admin\StockTypeController');
 });

@@ -43,4 +43,7 @@ return [
   // Category
   'category_name' => 'Category Name',
 
+  // Stock Type
+  'stock_type_name' => 'Stock Type Name',
+
 ];

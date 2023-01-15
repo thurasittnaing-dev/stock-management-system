@@ -41,4 +41,7 @@ return [
 
   // Category
   'category_name' => 'အမျိုးအစား အမည်',
+
+  // Stock Type
+  'stock_type_name' => 'ပစ္စည်းအမျိုးအစား',
 ];
