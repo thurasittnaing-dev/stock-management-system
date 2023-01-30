@@ -310,7 +310,13 @@
                   <tr>
                     <td>{{++$i}}</td>
                     <td>
-                        <img class="img-fluid table-img" src="{{asset('uploads/stocks/'.json_decode($stock->img)[0])}}" alt="">
+                        <img src="{{asset('uploads/stocks/'.json_decode($stock->img)[0])}}" class="img-fluid table-img"
+                        25
+                             data-magnify="gallery"
+                        26
+                             data-caption="{{$stock->name}}"
+                        27
+                             data-src="{{asset('uploads/stocks/'.json_decode($stock->img)[0])}}">
                     </td>
                     <td>{{$stock->name}}</td>
                     <td>{{$stock->stock_type->name}}</td>
@@ -364,7 +370,8 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{{asset('css/jquery.magnify.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/flatpickr.min.css')}}">
     <style>
         .dropbtn {                                                                                                                                                                             border: none;*/
             cursor: pointer;
@@ -404,7 +411,8 @@
 @stop
 
 @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{{asset('js/jquery.magnify.min.js')}}"></script>
+    <script src="{{asset('js/flatpickr.min.js')}}"></script>
     <script>
         $(document).ready(function() {
 
@@ -501,6 +509,11 @@
                     }
                 });
             });
+
+
+            // Magnify
+            $('[data-magnify=gallery]').magnify();
+
            
         });
     </script>
