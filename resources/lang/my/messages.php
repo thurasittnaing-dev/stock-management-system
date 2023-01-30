@@ -32,7 +32,15 @@ return [
 
   // table
   'table_name' => 'အမျိုးအမည်',
-  'table_status' => ' အခြေအနေ',
+  'table_img' => 'ပုံ',
+  'table_brand' => 'အမှတ်တံဆိပ်',
+  'table_qty' => 'အရေအတွက်',
+  'table_location' => 'တည်နေရာ',
+  'table_category' => 'အမျိုးအစား',
+  'table_stock_type' => 'အမျိုးအမည်',
+
+  'table_status' => 'အခြေအနေ',
+  'table_condition' => 'ပစ္စည်းအခြေအနေ',
   'table_created_at' => 'ထည့်သွင်းလိုက်သော အချိန်',
   'table_action' => 'လုပ်ဆောင်ချက်',
   'table_no_data' => 'ဒေတာ အချက်အလက်များ မရှိသေးပါ။',
@@ -47,4 +55,9 @@ return [
 
   // Stock Type
   'stock_type_name' => 'ပစ္စည်းအမျိုးအစား',
+
+  // Location
+  'location_name' => 'တည်နေရာ',
+  'lat' => 'လတ္တီကျူ',
+  'lng' => 'လောင်တီကျူ',
 ];

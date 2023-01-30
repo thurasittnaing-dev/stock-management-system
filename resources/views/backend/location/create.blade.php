@@ -30,6 +30,14 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
+                        <label>{{ __('messages.lat') }}</label>
+                        <input type="text" name="lat" class="form-control" placeholder="Optional">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>{{ __('messages.lng') }}</label>
+                        <input type="text" name="lng" class="form-control" placeholder="Optional">
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="status">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
                             <option value="1">Active</option>

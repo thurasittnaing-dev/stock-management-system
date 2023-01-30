@@ -32,12 +32,18 @@ return [
   'update' => 'Update',
 
   // table
+  'table_img' => 'Image',
   'table_name' => 'Name',
+  'table_brand' => 'Brand',
+  'table_qty' => 'Qty',
+  'table_location' => 'Location',
+  'table_category' => 'Category',
+  'table_stock_type' => 'Stock Type',
   'table_status' => 'Status',
+  'table_condition' => 'Condition',
   'table_created_at' => 'Created at',
   'table_action' => 'Action',
   'table_no_data' => 'There is no data',
-
 
   // Brand 
   'brand_name' => 'Brand Name',
@@ -48,5 +54,10 @@ return [
 
   // Stock Type
   'stock_type_name' => 'Stock Type Name',
+
+  // Location 
+  'location_name' => 'Location',
+  'lat' => 'Latitude',
+  'lng' => 'Longitude',
 
 ];

@@ -44,4 +44,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     // Stock Type
     Route::resource('stock_type', 'Admin\StockTypeController');
+
+    // Stock 
+    Route::resource('stock', 'Admin\StockController');
+    Route::post('stock/export', 'Admin\StockController@export')->name('stock.export');
 });

@@ -12,6 +12,11 @@ class Category extends Model
         'name', 'status',
     ];
 
+    public function stocks()
+    {
+        return $this->hasMany('App\Stock');
+    }
+
 
     public static function store_data($request)
     {

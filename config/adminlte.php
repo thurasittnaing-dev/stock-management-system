@@ -342,7 +342,7 @@ return [
         ['header' => 'MAIN MENU'],
         [
             'text'        => 'stocks',
-            'url'         => 'stock',
+            'url'         => 'admin/stock',
             'icon'        => 'fas fa-fw fa-box',
         ],
         [

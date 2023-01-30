@@ -12,6 +12,11 @@ class Brand extends Model
         'name', 'status'
     ];
 
+    public function stocks()
+    {
+        return $this->hasMany('App\Stock');
+    }
+
     public static function store_data($request)
     {
         Brand::create($request->all());

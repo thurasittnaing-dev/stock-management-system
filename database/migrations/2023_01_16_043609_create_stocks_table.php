@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationsTable extends Migration
+class CreateStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('lat')->nullable();
-            $table->string('lng')->nullable();
+            $table->text('img');
+            $table->integer('category_id');
+            $table->integer('stock_type_id');
+            $table->integer('brand_id');
+            $table->integer('location_id');
+            $table->integer('opening')->default(0);
+            $table->integer('qty')->default(0);
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
@@ -30,6 +35,6 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('stocks');
     }
 }
