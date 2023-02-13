@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Category Create')
+@section('title', 'Supplier Create')
 
 @section('content_header')
     {{-- Breadcrum Start --}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('supplier.index') }}">Supplier</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create</li>
         </ol>
     </nav>
@@ -18,14 +18,22 @@
     <div class="container-fluid">
         <div class="card p-5">
             <div class="d-flex">
-                <form method="POST" action="{{ route('category.store') }}" class="col-md-6" autocomplete="off">
+                <form method="POST" action="{{ route('supplier.store') }}" class="col-md-6" autocomplete="off">
                     @csrf
-                    <h4 class="text-muted font-weight-bold mb-5">Category Create</h4>
+                    <h4 class="text-muted font-weight-bold mb-5">Supplier Create</h4>
                     <div class="form-group col-md-6">
-                        <label for="name">{{ __('messages.category_name') }}</label>
+                        <label for="name">{{ __('messages.supplier_name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            id="name" placeholder="Please enter..." value="{{ old('name') }}">
+                            id="name" placeholder="Name" value="{{ old('name') }}">
                         @error('name')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="phone">{{ __('messages.phone') }}</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                            id="phone" placeholder="Phone number" value="{{ old('phone') }}">
+                        @error('phone')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -62,7 +70,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $("#status").select2();
+          $("#status").select2();
         });
     </script>
 @stop

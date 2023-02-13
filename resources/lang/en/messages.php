@@ -14,6 +14,9 @@ return [
   'damaged_histories' => 'Damaged Histories',
   'summary' => 'Summary',
   'location_map' => 'Location Map',
+  'user' => 'User',
+  'permission' => 'Permission',
+  'role' => 'Role',
 
   'setting' => 'Setting',
   'locations' => 'Locations',
@@ -33,6 +36,8 @@ return [
 
   // table
   'table_img' => 'Image',
+  'table_email' => 'E-mail',
+  'table_role' => 'Role',
   'table_name' => 'Name',
   'table_brand' => 'Brand',
   'table_qty' => 'Qty',
@@ -44,6 +49,7 @@ return [
   'table_created_at' => 'Created at',
   'table_action' => 'Action',
   'table_no_data' => 'There is no data',
+  'table_phone' => 'Phone Number',
 
   // Brand 
   'brand_name' => 'Brand Name',
@@ -55,9 +61,22 @@ return [
   // Stock Type
   'stock_type_name' => 'Stock Type Name',
 
+  // User
+  'user_name' => 'Name',
+  'email' => 'E-mail',
+  'password' => 'Password',
+
   // Location 
   'location_name' => 'Location',
   'lat' => 'Latitude',
   'lng' => 'Longitude',
+
+  // Supplier
+  'supplier_name' => 'Supplier Name',
+  'phone' => 'Phone Number',
+
+  // Permission
+  'permission_name' => 'Permission Name',
+  'permission_module' => 'Module'
 
 ];

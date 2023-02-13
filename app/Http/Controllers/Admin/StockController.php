@@ -16,6 +16,16 @@ class StockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+        $this->middleware('permission:stock-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:stock-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:stock-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:stock-delete', ['only' => ['destroy']]);
+    }
+
+
     public function index(Request $request)
     {
         //

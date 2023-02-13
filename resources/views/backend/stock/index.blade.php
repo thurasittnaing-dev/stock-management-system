@@ -311,11 +311,8 @@
                     <td>{{++$i}}</td>
                     <td>
                         <img src="{{asset('uploads/stocks/'.json_decode($stock->img)[0])}}" class="img-fluid table-img"
-                        25
                              data-magnify="gallery"
-                        26
                              data-caption="{{$stock->name}}"
-                        27
                              data-src="{{asset('uploads/stocks/'.json_decode($stock->img)[0])}}">
                     </td>
                     <td>{{$stock->name}}</td>

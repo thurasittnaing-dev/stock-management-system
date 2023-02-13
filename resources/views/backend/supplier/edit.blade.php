@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Locations Edit')
+@section('title', 'Supplier Edit')
 
 @section('content_header')
     {{-- Breadcrum Start --}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('location.index') }}">Location</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('supplier.index') }}">Supplier</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
         </ol>
     </nav>
@@ -21,34 +21,34 @@
     <div class="container-fluid">
         <div class="card p-3">
             <div class="d-flex">
-                <form method="POST" action="{{ route('location.update', $location->id) }}" class="col-md-6" autocomplete="off">
+                <form method="POST" action="{{ route('supplier.update', $supplier->id) }}" class="col-md-6" autocomplete="off">
                     @csrf
                     @method('PUT')
-                    <h4 class="text-muted font-weight-bold mb-5">Location Edit</h4>
+                    <h4 class="text-muted font-weight-bold mb-5">Supplier Edit</h4>
 
                     <input type="hidden" name="page" value="{{ $page }}">
 
                     <div class="form-group col-md-6">
-                        <label for="name">{{ __('messages.location_name') }}</label>
+                        <label for="name">{{ __('messages.supplier_name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            id="name" placeholder="Please enter..." value="{{ old('name', $location->name) }}">
+                            id="name" placeholder="Please enter..." value="{{ old('name', $supplier->name) }}">
                         @error('name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label>{{ __('messages.lat') }}</label>
-                        <input type="text" name="lat" class="form-control" placeholder="Optional" value="{{ old('lat', $location->lat) }}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>{{ __('messages.lng') }}</label>
-                        <input type="text" name="lng" class="form-control" placeholder="Optional" value="{{ old('lng', $location->lng) }}">
-                    </div>
+                      <label for="phone">{{ __('messages.phone') }}</label>
+                      <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                          id="phone" placeholder="Phone number" value="{{ old('phone',$supplier->phone) }}">
+                      @error('phone')
+                          <div class="text-danger">{{ $message }}</div>
+                      @enderror
+                  </div>
                     <div class="form-group col-md-6">
                         <label for="status">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                            <option {{ $location->status == '1' ? 'selected' : '' }} value="1">Active</option>
-                            <option {{ $location->status == '0' ? 'selected' : '' }} value="0">Inactive</option>
+                            <option {{ $supplier->status == '1' ? 'selected' : '' }} value="1">Active</option>
+                            <option {{ $supplier->status == '0' ? 'selected' : '' }} value="0">Inactive</option>
                         </select>
                         @error('status')
                             <div class="text-danger">{{ $message }}</div>
@@ -77,7 +77,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $("#status").select2();
+          $("#status").select2();
         });
     </script>
 @stop

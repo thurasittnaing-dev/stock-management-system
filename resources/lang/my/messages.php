@@ -14,6 +14,9 @@ return [
   'damaged_histories' => 'ပျက်စီးမှု မှတ်တမ်း',
   'summary' => 'အနှစ်ချုပ်',
   'location_map' => 'တည်နေရာပြ မြေပုံ',
+  'user' => 'အသုံးပြုသူများ',
+  'permission' => 'လုပ်ပိုင်ခွင့်များ',
+  'role' => 'လုပ်ပိုင်ခွင့်အဆင့်အတန်း',
 
   'setting' => 'ထိန်းချုပ်မှု',
   'locations' => 'တည်နေရာများ',
@@ -32,6 +35,8 @@ return [
 
   // table
   'table_name' => 'အမျိုးအမည်',
+  'table_email' => 'အီးမေးလ်',
+  'table_role' => 'လုပ်ပိုင်ခွင့်',
   'table_img' => 'ပုံ',
   'table_brand' => 'အမှတ်တံဆိပ်',
   'table_qty' => 'အရေအတွက်',
@@ -44,7 +49,12 @@ return [
   'table_created_at' => 'ထည့်သွင်းလိုက်သော အချိန်',
   'table_action' => 'လုပ်ဆောင်ချက်',
   'table_no_data' => 'ဒေတာ အချက်အလက်များ မရှိသေးပါ။',
+  'table_phone' => 'ဖုန်းနံပါတ်',
 
+  // User
+  'user_name' => 'အမည်',
+  'email' => 'မေးလ်လိပ်စာ',
+  'password' => 'လျှို့ဝှက် ပက်စ်ဝက်',
 
   // Brand 
   'brand_name' => 'အမှတ်တံဆိပ် အမည်',
@@ -60,4 +70,12 @@ return [
   'location_name' => 'တည်နေရာ',
   'lat' => 'လတ္တီကျူ',
   'lng' => 'လောင်တီကျူ',
+
+  // Supplier
+  'supplier_name' => 'ပေးသွင်းသူ နာမည်',
+  'phone' => 'ဖုန်းနံပါတ်',
+
+  // Permission
+  'permission_name' => 'လုပ်ပိုင်ခွင့် အမျိူးအစားအမည်',
+  'permission_module' => 'လုပ်ပိုင်ခွင့် အမျိုးအစား'
 ];

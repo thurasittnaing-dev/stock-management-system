@@ -108,4 +108,10 @@ class LocationController extends Controller
         $location->delete();
         return redirect()->route('location.index')->with('success', 'Deleted successful');
     }
+
+    public function map()
+    {
+        $locations = Location::where('status', 1)->get();
+        return view('backend.location.map', compact('locations'));
+    }
 }

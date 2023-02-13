@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     // Location
     Route::resource('location', 'Admin\LocationController');
+    Route::get('location_map', 'Admin\LocationController@map')->name('location.map');
 
     //Brands
     Route::resource('brand', 'Admin\BrandController');
@@ -48,4 +49,18 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     // Stock 
     Route::resource('stock', 'Admin\StockController');
     Route::post('stock/export', 'Admin\StockController@export')->name('stock.export');
+
+    // Supplier
+    Route::resource('supplier', 'Admin\SupplierController');
+
+    // Roles
+    Route::resource('role', 'Admin\RoleController');
+
+    // Users
+    Route::resource('user', 'Admin\UserController');
+
+    // Permission
+    Route::resource('permission', 'Admin\PermissionController');
+    Route::put('permission_update', 'Admin\PermissionController@permission_update')->name('permission_update');
+    Route::delete('permission_delete', 'Admin\PermissionController@permission_delete')->name('permission_delete');
 });

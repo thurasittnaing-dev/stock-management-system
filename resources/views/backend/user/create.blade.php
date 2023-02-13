@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Category Create')
+@section('title', 'User Create')
 
 @section('content_header')
     {{-- Breadcrum Start --}}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create</li>
         </ol>
     </nav>
@@ -18,11 +18,11 @@
     <div class="container-fluid">
         <div class="card p-5">
             <div class="d-flex">
-                <form method="POST" action="{{ route('category.store') }}" class="col-md-6" autocomplete="off">
+                <form method="POST" action="{{ route('user.store') }}" class="col-md-6" autocomplete="off">
                     @csrf
-                    <h4 class="text-muted font-weight-bold mb-5">Category Create</h4>
+                    <h4 class="text-muted font-weight-bold mb-5">User Create</h4>
                     <div class="form-group col-md-6">
-                        <label for="name">{{ __('messages.category_name') }}</label>
+                        <label for="name">{{ __('messages.user_name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                             id="name" placeholder="Please enter..." value="{{ old('name') }}">
                         @error('name')
@@ -30,15 +30,24 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="status">{{ __('messages.status') }}</label>
-                        <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                        @error('status')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                        <label>{{ __('messages.email') }}</label>
+                        <input type="email" name="email" class="form-control" placeholder="Mail Address">
                     </div>
+                    <div class="form-group col-md-6">
+                        <label>{{ __('messages.password') }}</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label>{{ __('messages.table_role') }}</label>
+                      <select name="roles[]" id="roles" class="form-control">
+                        <option value="">--Select--</option>
+                        @forelse(App\Helper::getRoles() as $role)
+                          <option value="{{$role->id}}">{{$role->name}}</option>
+                        @empty
+                        @endforelse
+                      </select>
+                  </div>
 
                     <div class="form-group col-md-6 d-flex">
                         <button type="submit" class="btn btn-block btn-success"><i class="fa-solid fa-floppy-disk"></i> {{ __('messages.save') }}</button>
@@ -62,7 +71,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $("#status").select2();
+            $("#roles").select2();
         });
     </script>
 @stop

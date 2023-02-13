@@ -61,6 +61,8 @@
 
 @section('js')
     <script>
-        $(document).ready(function() {});
+        $(document).ready(function() {
+            $("#status").select2();
+        });
     </script>
 @stop

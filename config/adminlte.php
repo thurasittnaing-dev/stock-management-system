@@ -344,36 +344,43 @@ return [
             'text'        => 'stocks',
             'url'         => 'admin/stock',
             'icon'        => 'fas fa-fw fa-box',
+            'can'          => 'stock-list'
         ],
         [
             'text'        => 'purchased_histories',
             'url'         => 'stock',
             'icon'        => 'fas fa-fw fa-clock-rotate-left',
+            'can'          => 'purchased-histories-list'
         ],
         [
             'text'        => 'usage_histories',
             'url'         => 'stock',
             'icon'        => 'fas fa-fw fa-clock-rotate-left',
+            'can'          => 'usage-histories-list'
         ],
         [
             'text'        => 'return_histories',
             'url'         => 'stock',
             'icon'        => 'fas fa-fw fa-clock-rotate-left',
+            'can'          => 'return-histories-list'
         ],
         [
             'text'        => 'damaged_histories',
             'url'         => 'stock',
             'icon'        => 'fas fa-fw fa-triangle-exclamation',
+            'can'          => 'damaged-histories-list'
         ],
         [
             'text'        => 'summary',
             'url'         => 'stock',
             'icon'        => 'fas fa-fw fa-book',
+            'can'          => 'summary-list'
         ],
         [
             'text'        => 'location_map',
-            'url'         => 'location_map',
+            'url'         => 'admin/location_map',
             'icon'        => 'fas fa-fw fa-map',
+            'can'          => 'location-map-list'
         ],
         ['header' => 'MASTER DATA'],
         [
@@ -384,35 +391,59 @@ return [
                     'text' => 'setting',
                     'url'  => 'admin/',
                     'icon' => 'fas fa-fw fa-gears',
+                    'can'  => 'setting-list'
+                ],
+                [
+                    'text' => 'user',
+                    'url'  => 'admin/user',
+                    'icon' => 'fas fa-fw fa-users',
+                    'can'  => 'user-list'
+                ],
+                [
+                    'text' => 'role',
+                    'url'  => 'admin/role',
+                    'icon' => 'fas fa-fw fa-cog',
+                    'can'  => 'role-list'
+                ],
+                [
+                    'text' => 'permission',
+                    'url'  => 'admin/permission',
+                    'icon' => 'fas fa-fw fa-cog',
+                    'can'  => 'permission-list'
                 ],
                 [
                     'text' => 'locations',
                     'url'  => 'admin/location',
                     'icon' => 'fas fa-fw fa-location-dot',
-                    'active' => ['admin/location', 'admin/location*']
+                    'active' => ['admin/location', 'admin/location*'],
+                    'can'  => 'location-list'
                 ],
                 [
                     'text' => 'suppliers',
-                    'url'  => 'admin/',
+                    'url'  => 'admin/supplier',
                     'icon' => 'fas fa-fw fa-users',
+                    'can'  => 'supplier-list'
                 ],
                 [
                     'text' => 'brands',
                     'url'  => 'admin/brand',
                     'icon' => 'fas fa-fw fa-tag',
-                    'active' => ['admin/brand', 'admin/brand*']
+                    'active' => ['admin/brand', 'admin/brand*'],
+                    'can'  => 'brand-list'
                 ],
                 [
                     'text' => 'categories',
                     'url'  => 'admin/category',
                     'icon' => 'fas fa-fw fa-list-check',
-                    'active' => ['admin/category', 'admin/category*']
+                    'active' => ['admin/category', 'admin/category*'],
+                    'can'  => 'categories-list'
                 ],
                 [
                     'text' => 'stock_types',
                     'url'  => 'admin/stock_type',
                     'icon' => 'fas fa-fw fa-box',
-                    'active' => ['admin/stock_type', 'admin/stock_type*']
+                    'active' => ['admin/stock_type', 'admin/stock_type*'],
+                    'can'  => 'stock-types-list'
                 ],
             ],
         ],
