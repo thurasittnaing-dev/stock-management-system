@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StockStoreRequest;
 use App\Exports\StockExport;
+use App\Http\Requests\StockUpdateRequest;
 use Excel;
 
 class StockController extends Controller
@@ -19,10 +20,10 @@ class StockController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:stock-list', ['only' => ['index', 'show']]);
-        $this->middleware('permission:stock-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:stock-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:stock-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:stock-list|stock-create|stock-edit|stock-delete', ['only' => ['index', 'store']]);
+        // $this->middleware('permission:stock-create', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:stock-edit', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:stock-delete', ['only' => ['destroy']]);
     }
 
 
@@ -82,6 +83,7 @@ class StockController extends Controller
     public function edit(Stock $stock)
     {
         //
+        return view('backend.stock.edit', compact('stock'));
     }
 
     /**
@@ -91,9 +93,11 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stock $stock)
+    public function update(StockUpdateRequest $request, Stock $stock)
     {
         //
+        Stock::update_data($request, $stock);
+        return redirect()->route('stock.index')->with('success', 'Updated Successfully');
     }
 
     /**

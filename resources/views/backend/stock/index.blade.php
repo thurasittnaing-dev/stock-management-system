@@ -306,6 +306,9 @@
               </tr>
           </thead>
           <tbody>
+                @php
+                    $suppliers = App\Helper::getSuppliers();
+                @endphp
               @forelse ($stocks as $stock)
                   <tr>
                     <td>{{++$i}}</td>
@@ -343,17 +346,82 @@
                             <i class="fas fa-cog"></i>
                         </button>
                         <div class="dropdown-content">
-                            <a href=""><i class="fa-solid fa-cart-shopping" style="color:#1a69ad;"></i>&nbsp;Purchase</a>
-                            <a href="" id="delete-btn"><i class="fa-solid fa-box" style="color:#1a69ad;"></i>&nbsp;Withdraw</a>
-                            <form action="" method="POST" id="delete-form">
-                                @csrf
-                                @method('delete')
-                              </form>
+                            <a href="{{route('stock.edit',$stock->id)}}" style="color:#8E44AD;"><i class="fa-solid fa-edit"></i>&nbsp;Edit</a>
+                            <a href="" data-toggle="modal" data-target="#purchaseModal{{$stock->id}}" style="color:#1a69ad;"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Purchase</a>
+                            <a href="" id="delete-btn" style="color:#138D75;"><i class="fa-solid fa-box"></i>&nbsp;Withdraw</a>
                         </div>
                     </div>
                     
                     </td>
                   </tr>
+                   <!--Purchase Modal Start -->
+                   <div class="modal fade" id="purchaseModal{{$stock->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-cart-shopping text-primary"></i> <span class="text-primary">{{$stock->name}}</span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form action="{{route('purchase_history.store')}}" method="POST" autocomplete="off">
+                            <h5 class="text-muted my-2 text-center font-weight-bold">Make Purchase</h5>
+                            @csrf
+                            <input type="hidden" name="stock_id" value="{{$stock->id}}">
+
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label>Price</label>
+                                        <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Price">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Quantity</label>
+                                        <input type="number" name="qty" class="form-control @error('qty') is-invalid @enderror"" placeholder="QTY">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Currency</label>
+                                        <select name="currency" id="" class="form-control @error('currency') is-invalid @enderror"">
+                                            <option value="mmk">MMK</option>
+                                            <option value="usd">USD</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Supplier</label>
+                                    <select name="supplier_id" class="form-control select2">
+                                        <option value="">--Select--</option>
+                                        @forelse($suppliers as $supplier)
+                                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                    @error('supplier_id')
+                                    <div class="my-2 text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Purchase Date</label>
+                                    <input type="text" id="purchase_date" name="purchase_date" class="form-control flatpickr" autocomplete="off" placeholder="Select Date">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Remark (Optional)</label>
+                                    <textarea name="remark" id="" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Confirm Purchase</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                 <!--Purchase Modal End -->
               @empty
                   <tr>
                       <td colspan="12" align="center">{{ __('messages.table_no_data') }}</td>
@@ -467,6 +535,10 @@
 
             // datepicker
             $("#from_date").flatpickr({
+                dateFormat: "d-m-Y",
+            });
+
+            $(".flatpickr").flatpickr({
                 dateFormat: "d-m-Y",
             });
 

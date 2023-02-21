@@ -5,6 +5,7 @@ namespace App;
 use App\StockType;
 use App\Category;
 use App\Brand;
+use App\Supplier;
 use Illuminate\Support\Facades\DB;
 
 class Helper
@@ -19,6 +20,12 @@ class Helper
   public static function getStockTypes()
   {
     return StockType::where('status', 1)->orderBy('created_at', 'desc')->get();
+  }
+
+  // Get Suppliers
+  public static function getSuppliers()
+  {
+    return Supplier::where('status', 1)->orderBy('created_at', 'desc')->get();
   }
 
   // Get Brands

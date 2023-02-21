@@ -19,7 +19,7 @@
       <div class="card p-4">
         <h4 class="text-muted font-weight-bold mb-3">Edit Stock Information</h4>
         
-        <form action="{{route('stock.update',$stock->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="row">
@@ -27,7 +27,7 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Stock Name</label>
-                  <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Enter a name..." value="{{old('name',$stock->name)}}">
+                  <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Enter a name..." value="{{old('name')}}">
                   @error('name')
                   <div class="text-danger">{{$message}}</div>
                   @enderror
@@ -37,7 +37,7 @@
                   <select name="brand" id="brand" class="form-control  @error('brand') is-invalid @enderror">
                     <option value="">--Select--</option>
                     @forelse( App\Helper::getBrands() as $brand)
-                    <option {{$stock->brand_id == $brand->id ? "selected" : "" }} value="{{$brand->id}}">{{$brand->name}}</option>
+                    <option value="{{$brand->id}}">{{$brand->name}}</option>
                     @empty
                     @endforelse
                   </select>
@@ -53,7 +53,7 @@
                   <select name="stock_type" id="stock_type" class="form-control  @error('stock_type')is-invalid @enderror">
                     <option value="">--Select--</option>
                     @forelse( App\Helper::getStockTypes() as $stock_type)
-                    <option {{$stock->stock_type_id == $stock_type->id ? "selected" : ""}} value="{{$stock_type->id}}">{{$stock_type->name}}</option>
+                    <option value="{{$stock_type->id}}">{{$stock_type->name}}</option>
                     @empty
                     @endforelse
                   </select>
@@ -67,7 +67,7 @@
                   <select name="category" id="category" class="form-control  @error('category') is-invalid @enderror">
                     <option value="">--Select--</option>
                     @forelse( App\Helper::getCategories() as $category)
-                    <option {{$stock->category_id == $category->id ? "selected" : ""}} value="{{$category->id}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}">{{$category->name}}</option>
                     @empty
                     @endforelse
                   </select>
@@ -80,7 +80,7 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="qty">Qty</label>
-                  <input type="number" name="qty" id="qty" class="form-control" value="{{$stock->qty}}">
+                  <input type="number" name="qty" id="qty" class="form-control">
                   @error('qty')
                   <div class="text-danger">{{$message}}</div>
                   @enderror
@@ -91,7 +91,7 @@
                   <select name="location" id="location" class="form-control  @error('location') is-invalid @enderror">
                     <option value="">--Select--</option>
                     @forelse( App\Helper::getLocations() as $location)
-                    <option  {{$stock->location_id == $location->id ? "selected" : ""}} value="{{$location->id}}">{{$location->name}}</option>
+                    <option value="{{$location->id}}">{{$location->name}}</option>
                     @empty
                     @endforelse
                   </select>
@@ -105,8 +105,8 @@
               <div class="col-md-6">
                 <label>Status</label>
                 <select name="status" id="status" class="form-control  @error('status') is-invalid @enderror">
-                  <option  {{$stock->status == "1" ? "selected" : ""}} value="1">Active</option>
-                  <option  {{$stock->status == "0" ? "selected" : ""}} value="0">Inactive</option>
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
                 </select>
                 @error('location')
                 <div class="text-danger">{{$message}}</div>
@@ -116,7 +116,7 @@
   
               <div class="row mt-4">
                 <div class="col-md-6">
-                  <a href="{{route('stock.index')}}" class="btn btn-block btn-primary">Go Back</a>
+                  <a href="" class="btn btn-block btn-primary">Go Back</a>
                 </div>
                 <div class="col-md-6">
                   <button class="btn btn-block btn-success" type="submit">Update</button>
@@ -127,11 +127,11 @@
             <div class="col-2"></div>
             <div class="col-4">
               <label>Stock Image </label>
-              <input type="hidden" name="old_filename" value="{{json_decode($stock->img)[0]}}">
-              <img src="{{asset('uploads/stocks/'.json_decode($stock->img)[0])}}" class="img-fluid img-thumbnail" alt="">
+              <input type="hidden" name="">
+              <img src="https://images.macrumors.com/article-new/2023/01/HomePod-2-White-and-Midnight-Feature-Blue-Orange.jpg" class="img-fluid img-thumbnail" alt="">
               <div class="form-group mt-4">
                 <div class="mb-2 text-muted">Upload New Photo</div>
-                <input type="file" name="stock_img[]" class="form-control-input">
+                <input type="file" class="form-control-input">
               </div>
             </div>
             
@@ -179,6 +179,7 @@
                 tags:true, //allow custom value
                 width: '100%', // for specific width
             });
+            $("#stock_type").val('{{old('stock_type')}}').trigger('change');
         
              // brand
              $('#brand').select2({
@@ -187,6 +188,7 @@
                 tags:true, //allow custom value
                 width: '100%', // for specific width
             });
+            $("#brand").val('{{old('brand')}}').trigger('change');
 
              // category
              $('#category').select2({
@@ -195,6 +197,7 @@
                 tags:true, //allow custom value
                 width: '100%', // for specific width
             });
+            $("#category").val('{{old('category')}}').trigger('change');
 
              // location
              $('#location').select2({
@@ -203,6 +206,7 @@
                 tags:true, //allow custom value
                 width: '100%', // for specific width
             });
+            $("#location").val('{{old('location')}}').trigger('change');
 
 
             // add new btn function

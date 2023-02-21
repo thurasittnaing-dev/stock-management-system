@@ -348,7 +348,7 @@ return [
         ],
         [
             'text'        => 'purchased_histories',
-            'url'         => 'stock',
+            'url'         => 'admin/purchase_history',
             'icon'        => 'fas fa-fw fa-clock-rotate-left',
             'can'          => 'purchased-histories-list'
         ],
@@ -375,12 +375,6 @@ return [
             'url'         => 'stock',
             'icon'        => 'fas fa-fw fa-book',
             'can'          => 'summary-list'
-        ],
-        [
-            'text'        => 'location_map',
-            'url'         => 'admin/location_map',
-            'icon'        => 'fas fa-fw fa-map',
-            'can'          => 'location-map-list'
         ],
         ['header' => 'MASTER DATA'],
         [

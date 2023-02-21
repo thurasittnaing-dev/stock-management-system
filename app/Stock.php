@@ -182,4 +182,102 @@ class Stock extends Model
             'location_id' => $locationId ?? $request->location,
         ]);
     }
+
+    public static function update_data($request, $stock)
+    {
+        // dd($request->all());
+        $fileNameArray = [];
+        $fileName = $request->old_filename;
+
+        if ($request->hasFile('stock_img')) {
+            $files = $request->file('stock_img');
+            $destionation_path = public_path() . '/uploads/stocks/';
+            // image upload
+            foreach ($files as $file) {
+                $ext =  $file->getClientOriginalExtension();
+                $filename = 'img_' . Carbon::now()->timestamp . '.' . $ext;
+
+                // resize
+                $image = Image::make($file->path());
+                $image->encode('jpg', 75)->save($destionation_path . '/' . $filename);
+                array_push($fileNameArray, $filename);
+            }
+
+            $fileName = json_encode($fileNameArray);
+
+            // delete
+            if (file_exists($destionation_path . $request->old_filename)) {
+                unlink($destionation_path  .  $request->old_filename);
+            }
+        } else {
+            $fileName = json_encode([$fileName]);
+        }
+
+
+        // Handle Stock Type  
+        if (!is_numeric($request->stock_type)) {
+
+            $stock_type = new StockType();
+            $stock_type = $stock_type->where('name', $request->stock_type);
+
+            //  check already exits
+            if ($stock_type->count() > 0) {
+                $stocktypeId = $stock_type->first()->id;
+            } else {
+                $stock_type = StockType::create([
+                    'name' => $request->stock_type,
+                ]);
+                $stocktypeId = $stock_type->id;
+            }
+        }
+
+        // Handle category 
+        if (!is_numeric($request->category)) {
+
+            $category = new Category();
+            $category = $category->where('name', $request->category);
+
+            //  check already exits
+            if ($category->count() > 0) {
+                $categoryId = $category->first()->id;
+            } else {
+                $category = Category::create([
+                    'name' => $request->category,
+                ]);
+                $categoryId = $category->id;
+            }
+        }
+
+        // Handle location 
+        if (!is_numeric($request->location)) {
+
+            $location = new Location();
+            $location = $location->where('name', $request->location);
+
+            //  check already exits
+            if ($location->count() > 0) {
+                $locationId = $location->first()->id;
+            } else {
+                $location = Location::create([
+                    'name' => $request->location,
+                ]);
+                $locationId = $location->id;
+            }
+        }
+
+
+
+        // Update
+        $stock->update([
+            'name' => $request->name,
+            'img' => $fileName,
+            'stock_type_id' => $stocktypeId ?? $request->stock_type,
+            'brand_id' => $brandId ?? $request->brand,
+            'category_id' => $categoryId ?? $request->category,
+            'opening' => $request->opening,
+            'qty' => $request->qty,
+            'status' => $request->status,
+            'location_id' => $locationId ?? $request->location,
+        ]);
+    }
 }

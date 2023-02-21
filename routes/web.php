@@ -4,12 +4,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+
 // Auth Routes
 Auth::routes([
     'register' => false,
     'reset' => false,
     'verify' => false,
 ]);
+
+Route::get('test_ui', function () {
+    return view('test_ui');
+});
 
 // Theme Routes
 Route::get('/theme_change', function (Request $request) {
@@ -63,4 +68,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::resource('permission', 'Admin\PermissionController');
     Route::put('permission_update', 'Admin\PermissionController@permission_update')->name('permission_update');
     Route::delete('permission_delete', 'Admin\PermissionController@permission_delete')->name('permission_delete');
+
+
+    // Purchase History
+    Route::resource('purchase_history', 'Admin\PurchaseHistoryController');
 });
