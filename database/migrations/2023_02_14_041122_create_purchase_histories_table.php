@@ -19,6 +19,7 @@ class CreatePurchaseHistoriesTable extends Migration
             $table->integer('stock_id');
             $table->integer('qty');
             $table->integer('price');
+            $table->integer('total');
             $table->string('currency');
             $table->date('purchase_date');
             $table->text('remark')->nullable();

@@ -20,7 +20,6 @@ class PurchaseHistoryController extends Controller
         $purchase_histories = PurchaseHistory::list_data($request);
         $count = $purchase_histories->count();
         $purchase_histories = $purchase_histories->paginate(10);
-        // dd($purchase_histories);
         return view('backend.purchase_history.index', compact('count', 'purchase_histories'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
