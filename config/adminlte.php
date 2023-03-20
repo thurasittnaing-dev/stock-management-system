@@ -354,7 +354,7 @@ return [
         ],
         [
             'text'        => 'usage_histories',
-            'url'         => 'stock',
+            'url'         => 'admin/withdraw_history',
             'icon'        => 'fas fa-fw fa-clock-rotate-left',
             'can'          => 'usage-histories-list'
         ],

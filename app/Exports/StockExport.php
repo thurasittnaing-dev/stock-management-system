@@ -23,6 +23,8 @@ class StockExport implements FromView
         $status = $_POST['status'] ?? '';
         $from_date = $_POST['from_date'] ?? '';
         $to_date = $_POST['to_date'] ?? '';
+        $from_qty = $_POST['from_qty'] ?? '';
+        $to_qty = $_POST['to_qty'] ?? '';
 
         // Start Query
         $stocks = new Stock();
@@ -60,6 +62,10 @@ class StockExport implements FromView
             $from_date = date('Y-m-d', strtotime($from_date));
             $to_date = date('Y-m-d', strtotime($to_date));
             $stocks = $stocks->whereBetween('created_at', [$from_date, $to_date]);
+        }
+
+        if ($from_qty != '' && $to_qty != '') {
+            $stocks = $stocks->whereBetween('qty', [$from_qty, $to_qty]);
         }
 
         $stocks = $stocks->get();

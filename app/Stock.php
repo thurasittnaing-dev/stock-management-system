@@ -77,6 +77,10 @@ class Stock extends Model
             $stocks = $stocks->whereBetween('created_at', [$from_date, $to_date]);
         }
 
+        if ($request->from_qty != '' && $request->to_qty != '') {
+            $stocks = $stocks->whereBetween('qty', [$request->from_qty, $request->to_qty]);
+        }
+
         return $stocks;
     }
 

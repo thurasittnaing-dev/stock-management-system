@@ -25,6 +25,8 @@
             $status_id = $_GET['status'] ?? '';
             $from_date = $_GET['from_date'] ?? '';
             $to_date = $_GET['to_date'] ?? '';
+            $from_qty = $_GET['from_qty'] ?? '';
+            $to_qty = $_GET['to_qty'] ?? '';
             $page = $_GET['page'] ?? 1;
         @endphp
         <div class="my-2 d-flex justify-content-between p-0">
@@ -44,9 +46,11 @@
                         <input type="hidden" name="status" value="{{$status_id}}">
                         <input type="hidden" name="from_date" value="{{$from_date}}">
                         <input type="hidden" name="to_date" value="{{$to_date}}">
+                        <input type="hidden" name="from_qty" value="{{$from_qty}}">
+                        <input type="hidden" name="to_qty" value="{{$to_qty}}">
 
                        <div class="form-group">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#filterModal">
                             <i class="fa-solid fa-filter"></i>
                           </button>
                        </div>
@@ -55,7 +59,7 @@
 
                   <!-- Filter Modal -->
                   <div class="modal fade" id="filterModal" role="dialog" aria-labelledby="filterModal" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                         <h5 class="modal-title text-muted">More Filter</h5>
@@ -68,7 +72,7 @@
                                 <input type="hidden" name="keyword" id="hidden_keyword" value="{{$keyword}}">
                                 <div class="row">
                                      {{-- Stock Type --}}
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-4">
                                         <label class="filter-label">Stock Type</label>
                                         <select name="stock_type" class="form-control select2">
                                             <option value="">--Select--</option>
@@ -78,8 +82,19 @@
                                             @endforelse
                                         </select>
                                     </div>
+                                    {{-- Brand --}}
+                                   <div class="form-group col-4">
+                                        <label class="filter-label">Brand</label>
+                                        <select name="brand" class="form-control select2">
+                                            <option value="">--Select--</option>
+                                            @forelse (App\Helper::getBrands() as $brand)
+                                            <option  {{$brand->id == $brand_id ? "selected" : "" }} value="{{$brand->id}}">{{$brand->name}}</option>
+                                            @empty
+                                            @endforelse
+                                        </select>
+                                    </div>
                                     {{--  Category --}}
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-4">
                                         <label class="filter-label">Category</label>
                                         <select name="category" class="form-control select2">
                                             <option value="">--Select--</option>
@@ -91,34 +106,20 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    {{-- Brand --}}
-                                   <div class="form-group col-6">
-                                       <label class="filter-label">Brand</label>
-                                       <select name="brand" class="form-control select2">
-                                           <option value="">--Select--</option>
-                                           @forelse (App\Helper::getBrands() as $brand)
-                                           <option  {{$brand->id == $brand_id ? "selected" : "" }} value="{{$brand->id}}">{{$brand->name}}</option>
-                                           @empty
-                                           @endforelse
-                                       </select>
-                                   </div>
-                                   {{--  Location --}}
-                                   <div class="form-group col-6">
-                                       <label class="filter-label">Location</label>
-                                       <select name="location" class="form-control select2">
-                                           <option value="">--Select--</option>
-                                           @forelse (App\Helper::getLocations() as $location)
-                                           <option  {{$location->id == $location_id ? "selected" : "" }} value="{{$location->id}}">{{$location->name}}</option>
-                                           @empty
-                                           @endforelse
-                                       </select>
-                                   </div>
-                               </div>
-
                                <div class="row">
+                                  {{--  Location --}}
+                                  <div class="form-group col-4">
+                                        <label class="filter-label">Location</label>
+                                        <select name="location" class="form-control select2">
+                                            <option value="">--Select--</option>
+                                            @forelse (App\Helper::getLocations() as $location)
+                                            <option  {{$location->id == $location_id ? "selected" : "" }} value="{{$location->id}}">{{$location->name}}</option>
+                                            @empty
+                                            @endforelse
+                                        </select>
+                                    </div>
                                     {{-- Condition --}}
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-4">
                                         <label class="filter-label">Condition</label>
                                         <select name="condition" class="form-control select2">
                                                 <option value="">--Select--</option>
@@ -127,13 +128,27 @@
                                         </select>
                                     </div>
                                     {{--  Status --}}
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-4">
                                         <label class="filter-label">Status</label>
                                         <select name="status" class="form-control select2">
                                                 <option value="">--Select--</option>
                                                 <option  {{$status_id == '1' ? "selected" : "" }} value="1">Active</option>
                                                 <option  {{$status_id == '0' ? "selected" : "" }} value="0">Inactive</option>
                                         </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    {{-- From Date --}}
+                                    <div class="form-group col-6">
+                                        <label class="filter-label">From Qty</label>
+                                        <input type="number" id="from_qty" name="from_qty" class="form-control" autocomplete="off" placeholder="1" min="0" value="{{$from_qty}}">
+                                    </div>
+                                    {{--  To Date --}}
+                                    <div class="form-group col-6">
+                                        <label class="filter-label">To Qty</label>
+                                        <input type="number" id="to_qty" name="to_qty" class="form-control" autocomplete="off" placeholder="10" min="10" value="{{$to_qty}}">
                                     </div>
                                 </div>
 
@@ -150,10 +165,12 @@
                                     </div>
                                 </div>
 
+
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="search-btn" class="btn btn-sm btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                            <button type="button" onclick="resetForm()" class="btn btn-warning">Clear All</button>
+                            <button type="button" id="search-btn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
                         </div>
                     </div>
                     </div>
@@ -281,6 +298,8 @@
                 <input type="hidden" name="status" value="{{$status_id}}">
                 <input type="hidden" name="from_date" value="{{$from_date}}">
                 <input type="hidden" name="to_date" value="{{$to_date}}">
+                <input type="hidden" name="from_qty" value="{{$from_qty}}">
+                <input type="hidden" name="to_qty" value="{{$to_qty}}">
             </form>
         </div>
         
@@ -348,7 +367,7 @@
                         <div class="dropdown-content">
                             <a href="{{route('stock.edit',$stock->id)}}" style="color:#8E44AD;"><i class="fa-solid fa-edit"></i>&nbsp;Edit</a>
                             <a href="" data-toggle="modal" data-target="#purchaseModal{{$stock->id}}" style="color:#1a69ad;"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Purchase</a>
-                            <a href="" id="delete-btn" style="color:#138D75;"><i class="fa-solid fa-box"></i>&nbsp;Withdraw</a>
+                            <a href="" data-toggle="modal" data-target="#withdrawModal{{$stock->id}}" style="color:#138D75;"><i class="fa-solid fa-box"></i>&nbsp;Withdraw</a>
                         </div>
                     </div>
                     
@@ -356,7 +375,7 @@
                   </tr>
                    <!--Purchase Modal Start -->
                    <div class="modal fade" id="purchaseModal{{$stock->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-cart-shopping text-primary"></i> <span class="text-primary">{{$stock->name}}</span></h5>
@@ -365,7 +384,7 @@
                         </button>
                         </div>
                         <form action="{{route('purchase_history.store')}}" method="POST" autocomplete="off">
-                            <h5 class="text-muted my-2 text-center font-weight-bold">Make Purchase</h5>
+                            <h5 class="text-muted my-2 text-center font-weight-bold">Make Purchase Process</h5>
                             @csrf
                             <input type="hidden" name="stock_id" value="{{$stock->id}}">
 
@@ -378,7 +397,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label>Quantity</label>
-                                        <input type="number" name="qty" class="form-control @error('qty') is-invalid @enderror"" placeholder="QTY">
+                                        <input type="number" name="qty" class="form-control @error('qty') is-invalid @enderror"" placeholder="QTY" min="0">
                                     </div>
 
                                     <div class="form-group col-md-4">
@@ -392,7 +411,7 @@
 
                                 <div class="form-group">
                                     <label>Supplier</label>
-                                    <select name="supplier_id" class="form-control select2">
+                                    <select name="supplier_id" class="form-control select2Tag">
                                         <option value="">--Select--</option>
                                         @forelse($suppliers as $supplier)
                                         <option value="{{$supplier->id}}">{{$supplier->name}}</option>
@@ -420,8 +439,103 @@
                         </div>
                     </div>
                     </div>
-                </div>
+                     </div>
                  <!--Purchase Modal End -->
+
+                 {{-- Withdraw Modal Start --}}
+                 <div class="modal fade" id="withdrawModal{{$stock->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-cart-shopping text-primary"></i> <span class="text-primary">{{$stock->name}}</span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form action="{{route('withdraw_history.store')}}" method="POST" autocomplete="off">
+                            <h5 class="text-muted my-2 text-center font-weight-bold">Stock Withdraw Process</h5>
+                            @csrf
+                            <input type="hidden" name="stock_id" value="{{$stock->id}}">
+
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Withdrawer</label>
+                                        <select name="withdrawer_id" id="" class="form-control select2Tag @error('withdrawer_id') is-invalid @enderror">
+                                            <option value="">--Select--</option>
+                                            @forelse (App\Helper::getWithdrawers() as $withdrawer)
+                                                <option value="{{$withdrawer->id}}">{{$withdrawer->name}}</option>
+                                            @empty
+                                                
+                                            @endforelse
+                                        </select>
+                                        @error('withdrawer_id')
+                                        <div class="my-2 text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Quantity</label>
+                                        <input type="number" name="qty" class="form-control @error('qty') is-invalid @enderror" placeholder="QTY">
+                                        @error('qty')
+                                        <div class="my-2 text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Date</label>
+                                        <input type="text" name="date" class="form-control flatpickr @error('date') is-invalid @enderror" placeholder="{{date('d-m-Y')}}">
+                                        @error('date')
+                                        <div class="my-2 text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Withdraw Type</label>
+                                        <select name="withdraw_type" id="" class="form-control @error('withdraw_type') is-invalid @enderror">
+                                            <option value="borrow">Borrow</option>
+                                            <option value="permanent">Permanent</option>
+                                        </select>
+                                        @error('withdraw_type')
+                                        <div class="my-2 text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label>Action By</label>
+                                       <select name="actionby" id="" class="form-control select2  @error('actionby') is-invalid @enderror">
+                                        <option value="">--Select--</option>
+                                        @forelse(App\Helper::getUsers() as $user)
+                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                        @empty
+                                        @endforelse
+                                       </select>
+                                       @error('actionby')
+                                       <div class="my-2 text-danger">{{$message}}</div>
+                                       @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                   <div class="col-md-12">
+                                    <label>Remark (Optional)</label>
+                                    <textarea name="remark" id="" cols="30" rows="5" class="form-control"></textarea>
+                                   </div>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Make Withdraw</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                     </div>
+                 {{-- Withdraw Modal End --}}
               @empty
                   <tr>
                       <td colspan="12" align="center">{{ __('messages.table_no_data') }}</td>
@@ -532,6 +646,13 @@
                 width: '100%', // for specific width
             });
 
+            $('.select2Tag').select2({
+                placeholder: '--Select--', // placeholder
+                allowClear: true, // clear btn
+                width: '100%', // for specific width
+                tags:true,
+            });
+
 
             // datepicker
             $("#from_date").flatpickr({
@@ -585,5 +706,14 @@
 
            
         });
+
+        let resetForm = () => {
+           $("#search-form")[0].reset();
+           $("#to_qty").val(null);
+           $("#from_qty").val(null);
+           $("#from_date").val(null);
+           $("#to_date").val(null);
+           $('.select2').val(null).trigger('change');
+        }
     </script>
 @stop

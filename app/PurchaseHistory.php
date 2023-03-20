@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Stock;
+use App\Supplier;
 
 class PurchaseHistory extends Model
 {
@@ -98,6 +99,23 @@ class PurchaseHistory extends Model
                 $total = 0;
             }
 
+            // Handle Supplier  
+            if (!is_numeric($request->supplier_id)) {
+
+                $supplier = new Supplier();
+                $supplier = $supplier->where('name', $request->supplier_id);
+
+                //  check already exits
+                if ($supplier->count() > 0) {
+                    $supplierId = $supplier->first()->id;
+                } else {
+                    $supplier = Supplier::create([
+                        'name' => $request->supplier_id,
+                    ]);
+                    $supplierId = $supplier->id;
+                }
+            }
+
             PurchaseHistory::create([
                 'price' => $request->price,
                 'stock_id' => $request->stock_id,
@@ -105,7 +123,7 @@ class PurchaseHistory extends Model
                 'currency' => $request->currency,
                 'total' => $total,
                 'purchase_date' => date('Y-m-d', strtotime($request->purchase_date)),
-                'supplier_id' => $request->supplier_id,
+                'supplier_id' => $supplierId,
                 'remark' => $request->remark,
             ]);
 

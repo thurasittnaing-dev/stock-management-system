@@ -72,4 +72,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     // Purchase History
     Route::resource('purchase_history', 'Admin\PurchaseHistoryController');
+
+    // Withdraw History
+    Route::resource('withdraw_history', 'Admin\WithdrawHistoryController');
 });

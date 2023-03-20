@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupplierStoreRequest extends FormRequest
+class WithdrawHistoryStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,11 @@ class SupplierStoreRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required'
+            'date' => 'required',
+            'qty' => 'required|numeric|min:0',
+            'withdraw_type' => 'required',
+            'actionby' => 'required',
+            'withdrawer_id' => 'required',
         ];
     }
 }

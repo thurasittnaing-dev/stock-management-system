@@ -34,10 +34,22 @@ class Helper
     return Brand::where('status', 1)->orderBy('created_at', 'desc')->get();
   }
 
+  // Get Users
+  public static function getUsers()
+  {
+    return User::orderBy('created_at', 'desc')->get();
+  }
+
   // Get Categories
   public static function getCategories()
   {
     return Category::where('status', 1)->orderBy('created_at', 'desc')->get();
+  }
+
+  // Get Withdrawer
+  public static function getWithdrawers()
+  {
+    return Withdrawer::where('status', 1)->orderBy('created_at', 'desc')->get();
   }
 
   // Get Locations
