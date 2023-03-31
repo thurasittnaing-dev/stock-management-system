@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Stock;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1'], function () {
+
+    Route::get('test', function () {
+        return response()->json([
+            'status' => 1,
+            'message' => 'success',
+            'data' => Stock::all(),
+        ]);
+    });
 });

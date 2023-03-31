@@ -75,4 +75,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     // Withdraw History
     Route::resource('withdraw_history', 'Admin\WithdrawHistoryController');
+
+
+    // Return History
+    Route::resource('return_history', 'Admin\ReturnHistoryController');
 });

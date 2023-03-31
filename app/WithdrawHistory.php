@@ -18,7 +18,7 @@ class WithdrawHistory extends Model
     public static function list_data($request)
     {
         $withdraw_history = new WithdrawHistory();
-        $withdraw_history = $withdraw_history->select('withdraw_histories.*', 'brands.name AS brand_name', 'categories.name AS category_name', 'stock_types.name as stock_type_name', 'withdrawers.name AS withdrawer_name', 'stocks.name AS stock_name', 'users.name AS approve_by', 'stocks.img AS stock_img')
+        $withdraw_history = $withdraw_history->select('withdraw_histories.*', 'brands.name AS brand_name', 'categories.name AS category_name', 'stock_types.name as stock_type_name', 'withdrawers.name AS withdrawer_name', 'withdrawers.id AS withdrawer_id', 'stocks.name AS stock_name', 'stocks.id AS stock_id', 'users.name AS approve_by', 'stocks.img AS stock_img')
             ->leftjoin('stocks', 'stocks.id', 'withdraw_histories.stock_id')
             ->leftjoin('withdrawers', 'withdrawers.id', 'withdraw_histories.withdrawer_id')
             ->leftjoin('stock_types', 'stock_types.id', 'stocks.stock_type_id')
