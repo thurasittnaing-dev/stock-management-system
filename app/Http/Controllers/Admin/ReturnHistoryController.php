@@ -16,9 +16,14 @@ class ReturnHistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $return_histories = ReturnHistory::list_data($request);
+        $count = $return_histories->count();
+        $return_histories = $return_histories->paginate(10);
+
+        return view('backend.return_history.index', compact('return_histories', 'count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -72,7 +77,8 @@ class ReturnHistoryController extends Controller
                     'withdraw_history_id' => $request->withdraw_history_id,
                     'qty' => $request->qty,
                     'date' => date('Y-m-d', strtotime($request->date)),
-                    'is_final' => $final
+                    'is_final' => $final,
+                    'is_damage' => $request->is_damaged ? 1 : 0,
                 ]);
 
 

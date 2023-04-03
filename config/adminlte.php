@@ -360,13 +360,13 @@ return [
         ],
         [
             'text'        => 'return_histories',
-            'url'         => 'stock',
+            'url'         => 'admin/return_history',
             'icon'        => 'fas fa-fw fa-clock-rotate-left',
             'can'          => 'return-histories-list'
         ],
         [
             'text'        => 'damaged_histories',
-            'url'         => 'stock',
+            'url'         => 'admin/damaged_history',
             'icon'        => 'fas fa-fw fa-triangle-exclamation',
             'can'          => 'damaged-histories-list'
         ],

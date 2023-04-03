@@ -19,6 +19,7 @@ class CreateReturnHistoriesTable extends Migration
             $table->integer('qty');
             $table->dateTime('date');
             $table->boolean('is_final');
+            $table->boolean('is_damage')->default(0);
             $table->timestamps();
         });
     }
