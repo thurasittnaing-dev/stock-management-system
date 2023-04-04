@@ -216,14 +216,14 @@
                         <i class="fa-solid fa-eye-slash"></i>
                     </button>
                     <div class="dropdown-menu" id="tableHeaderMenu">
-                        <li class="dropdown-item clickable">
+                        {{-- <li class="dropdown-item clickable">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="table_img" value="">
                                 <label class="form-check-label">
                                     <small>{{ __('messages.table_img') }}</small>
                                 </label>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="dropdown-item clickable">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="table_name" value="">
